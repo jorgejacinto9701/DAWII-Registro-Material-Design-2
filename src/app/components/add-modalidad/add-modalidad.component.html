@@ -1,0 +1,70 @@
+<mat-toolbar color="primary" >    
+  <span>Registra Modalidad</span>    
+</mat-toolbar>  
+
+<form [formGroup]="formsRegistra" (ngSubmit)="registra()" id="idFormModalidad">
+  <mat-grid-list cols="3" rowHeight="800px">
+    <mat-grid-tile>
+        <div class="controles-container">
+              <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input formControlName="nombre" matInput [(ngModel)] ="objModalidad.nombre" >
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.nombre.touched && !(formsRegistra.controls.nombre.errors == null)" >     
+                   El nombre es de 3 a 30 caracteres 
+                </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Número de Hombres</mat-label>
+                <input formControlName="numHombres" matInput [(ngModel)] ="objModalidad.numHombres">
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.numHombres.touched && !(formsRegistra.controls.numHombres.errors == null)" >     
+                   El número de hombres es de dos dígitos
+                </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Número de Mujeres</mat-label>
+                <input formControlName="numMujeres" matInput  [(ngModel)] ="objModalidad.numMujeres">
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.numMujeres.touched && !(formsRegistra.controls.numMujeres.errors == null)" >     
+                  El número de mujeres es de dos dígitos
+               </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Edad Mínima</mat-label>
+                <input formControlName="edadMinima" matInput [(ngModel)] ="objModalidad.edadMinima" >
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.edadMinima.touched && !(formsRegistra.controls.edadMinima.errors == null)" >     
+                  La edad mínima es de 18 a 25 años
+               </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Edad Máxima</mat-label>
+                <input formControlName="edadMaxima" matInput [(ngModel)] ="objModalidad.edadMaxima">
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.edadMaxima.touched && !(formsRegistra.controls.edadMaxima.errors == null)" >     
+                  La edad máxima es de 18 a 40 años
+               </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Sede</mat-label>
+                <input formControlName="sede" matInput [(ngModel)] ="objModalidad.sede">
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.sede.touched && !(formsRegistra.controls.sede.errors == null)" >     
+                  La sede es de 3 a 30 caracteres 
+               </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Deporte</mat-label>
+                <mat-select formControlName="deporte"  [(ngModel)] ="objModalidad.deporte!.idDeporte">
+                  <mat-option value="-1"> [Seleccione] </mat-option>
+                  <ng-container *ngFor="let x of lstDeportes">
+                    <mat-option value="{{x.idDeporte}}">{{x.nombre}}</mat-option>
+                  </ng-container>
+                </mat-select>
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.deporte.touched && !(formsRegistra.controls.deporte.errors == null)" >     
+                    El deporte es obligatorio
+                 </mat-hint>
+              </mat-form-field>              
+              <div class="button-row">
+                <button mat-raised-button type="submit" color="primary" [disabled]="formsRegistra.invalid">Submit</button>
+                <button mat-raised-button type="reset" color="warn">Clear</button>
+              </div>
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
